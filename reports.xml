@@ -1,0 +1,130 @@
+<odoo>
+
+    <report
+        id="report_invoice"
+        model="mobileshop.invoice"
+        string="Invoice Report"
+        name="mobileshop.report_invoice_view"
+        file="mobileshop.report_invoice"
+        report_type="qweb-pdf" />
+
+    <template id="report_invoice_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <hr style="border-top: 8px solid #bbb;"></hr>
+                        <h2 t-field="doc.name"/>
+                        <p>Responsible: <span t-field="doc.responsible_id.name"/></p>
+                        <div id="informations" class="row mt32 mb32">
+                            <div class="col-auto mw-100 mb-2" t-if="doc.customername" name="customername">
+                                <strong>Customer: </strong>
+                            <p class="m-0" t-field="doc.customername"/>
+                            </div>
+                            <div class="col-auto mw-100 mb-2" t-if="doc.customermobile" name="customermobile">
+                                <strong>Customer mobile: </strong>
+                            <p class="m-0" t-field="doc.customermobile"/>
+                            </div>
+                            <div class="col-auto mw-100 mb-2" t-if="doc.invoicedate" name="invoicedate">
+                                <strong>Date: </strong>
+                            <p class="m-0" t-field="doc.invoicedate"/>
+                            </div>
+                        </div>
+                        <p>Date: <span t-field="doc.invoicedate"/></p>
+                        <p>Customer mobile: <span t-field="doc.customermobile"/></p>
+                        <hr style="border-top: 3px solid #bbb;"></hr>
+                        <h3>Mobile:</h3>
+                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <td t-foreach="doc.mobile_id" t-as="mobile">
+                                <li><span t-field="mobile.name"/></li>
+                                </td>
+                                <td><p>Mobile Price: <span t-field="doc.mobileprice"/> Le</p></td>
+                                <td><p>Quantity: <span t-field="doc.mobilequantity"/> Le</p></td>
+                                <td><p>Mobile Tax: <span t-field="doc.mobiletax"/> Le</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Mobile Total Price: <span t-field="doc.mobiletotalprice"/> Le</p></td>
+                            </tr>
+                        </thead>
+                        </table>
+                        <hr style="border-top: 3px dotted #bbb;"></hr>
+                        <h3>Screens:</h3>
+                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <td t-foreach="doc.screen_id" t-as="screen">
+                                <li><span t-field="screen.name"/></li>
+                                </td>
+                                <td><p>Screen Price: <span t-field="doc.screenprice"/> Le</p></td>
+                                <td><p>Quantity: <span t-field="doc.screenquantity"/> Le</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Screen Total Price: <span t-field="doc.screentotalprice"/> Le</p></td>
+                            </tr>
+                        </thead>
+                        </table>
+                        <hr style="border-top: 3px dotted #bbb;"></hr>
+                        <h3>Adapters:</h3>
+                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <td t-foreach="doc.adapter_id" t-as="adapter">
+                                <li><span t-field="adapter.name"/></li>
+                                </td>
+                                <td><p>Adapter Price: <span t-field="doc.adapterprice"/> Le</p></td>
+                                <td><p>Quantity: <span t-field="doc.adapterquantity"/> Le</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Adapters Total Price: <span t-field="doc.adaptertotalprice"/> Le</p></td>
+                            </tr>
+                        </thead>
+                        </table>
+                        <hr style="border-top: 3px dotted #bbb;"></hr>
+                        <h3>Headphones:</h3>
+                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <td t-foreach="doc.headphone_id" t-as="headphone">
+                                <li><span t-field="headphone.name"/></li>
+                                </td>
+                                <td><p>Headphone Price: <span t-field="doc.headphoneprice"/> Le</p></td>
+                                <td><p>Quantity: <span t-field="doc.headphonequantity"/> Le</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Headphones Total Price: <span t-field="doc.headphonetotalprice"/> Le</p></td>
+                            </tr>
+                        </thead>
+                        </table>
+                        <hr style="border-top: 3px dotted #bbb;"></hr>
+                        <h3>UsbCovers and Other:</h3>
+                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <td t-foreach="doc.usbcovers_id" t-as="usbcovers">
+                                <li><span t-field="mobile.name"/></li>
+                                </td>
+                                <td><p>Usbcovers Price: <span t-field="doc.usbcoversprice"/> Le</p></td>
+                                <td><p>Quantity: <span t-field="doc.usbcoversquantity"/> Le</p></td>
+                            </tr>
+                            <tr>
+                                <td><p>Usbcovers Total Price: <span t-field="doc.usbcoverstotalprice"/> Le</p></td>
+                            </tr>
+                        </thead>
+                        </table>
+                        <hr style="border-top: 3px dashed #bbb;"></hr>
+                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <td  class="text-right"><p>Total Price: <span t-field="doc.totalprice"/> Le</p></td>
+                            </tr>
+                        </thead>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

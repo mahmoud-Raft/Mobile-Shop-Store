@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="mobile_form_view">
+            <field name="name">mobile.form</field>
+            <field name="model">mobileshop.mobile</field>
+            <field name="arch" type="xml">
+                <form string="mobile Form">
+                    <sheet>
+                        <group>
+                            <div>
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div>
+                                <h1><field name="name" placeholder="Enter Name"/></h1>
+                                    <field name="company_id"/>
+                            </div>
+                            <br/>
+                        </group>
+                         <notebook>
+                             <page string="Mobile Propereties:">
+                                <group string="Basic Info" colspan="4" col="4">
+                                    <field name="responsible_id"/>
+                                    <field name="processor" placeholder="Enter Processor info."/>
+                                    <field name="ram_storage"/>
+                                    <field name="camera"/>
+                                    <field name="screensize"/>
+                                    <field name="oper_system"/>
+                                    <field name="battery_size"/>
+                                </group>
+                                <group string="Other Info" colspan="4" col="4">
+                                    <field name="numberinstore"/>
+                                    <field name="simcard" widget="selection"/>
+                                    <field name="externalmomerycard" widget="selection"/>
+                                    <field name="color"/>
+                                    <field name="advantages_ids"/>
+                                    <field name="price"/>
+                                </group>
+                             </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+        <!-- session tree/list view -->
+        <record model="ir.ui.view" id="mobile_tree_view">
+            <field name="name">mobile.tree</field>
+            <field name="model">mobileshop.mobile</field>
+            <field name="arch" type="xml">
+                <tree string="Mobile Tree">
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="color"/>
+                <field name="screensize"/>
+                <field name="oper_system"/>
+                <field name="battery_size"/>
+                <field name="numberinstore"/>
+                <field name="price"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Kanban view for mobile -->
+    <record id="mobile_kanban_view" model="ir.ui.view">
+        <field name="name">mobile.kanban</field>
+        <field name="model">mobileshop.mobile</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="color"/>
+                <field name="battery_size"/>
+                <field name="price"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div  class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div name="tags">
+                                    <strong>
+                                        <span>Color: <field name="color"/></span>
+                                    </strong>
+                                </div>
+                                <div name="tags">
+                                    <ul>
+                                        <li>Battery: <field name="battery_size"/> mAm</li>
+                                    </ul>
+                                </div>
+                                <div name="tags">
+                                    <ul>
+                                        <li>Price : <field name="price"/> Le</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Actions-->
+    <!-- Action for Mobile-->
+    <record id="action_products_mobile" model="ir.actions.act_window">
+        <field name="name">Mobiles</field>
+        <field name="res_model">mobileshop.mobile</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to define a new product.
+              </p><p>
+                The product form contains information to simplify the sale
+                process</p>
+        </field>
+    </record>
+        <!-- Menu -->
+    <menuitem id="menu_main" name="Mobile Shop Store"/>
+    <menuitem id="menu_products" name="Mobile shop Products" parent="menu_main"/>
+    <menuitem id="menu_products_mobile" action="action_products_mobile"
+              parent="menu_products"/>
+
+    <!-- Form view for Adapters-->
+    <record id="view_adapter_form" model="ir.ui.view">
+        <field name="name">adapters.form</field>
+        <field name="model">mobileshop.adapter</field>
+        <field name="arch" type="xml">
+            <form string="Mobile Adapters">
+                <sheet>
+                    <group>
+                        <div>
+                            <field name="image" widget="image" class="oe_avatar"/>
+                        </div>
+                        <div>
+                            <h1><field name="name" placeholder="Enter Name"/></h1>
+                                <field name="company_id"/>
+                        </div>
+                        <br/>
+                    </group>
+                    <notebook>
+                        <page string="Adapters Propereties">
+                            <group>
+                                <field name="responsible_id"/>
+                                <field name="adapertype" placeholder="Choose the type"/>
+                                <field name="color"/>
+                                <field name="adapterspeed"/>
+                                <field name="price"/>
+                                <field name="numberinstore"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- tree view for Adapters-->
+    <record id="adapter_tree_view" model="ir.ui.view">
+        <field name="name">adapter.tree</field>
+        <field name="model">mobileshop.adapter</field>
+        <field name="arch" type="xml">
+            <tree string="menu items">
+                <field name="name"/>
+                <field name="adapertype"/>
+                <field name="color"/>
+                <field name="adapterspeed"/>
+                <field name="price"/>
+                <field name="numberinstore"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Kanban view for Adapters -->
+    <record id="adapters_kanban_view" model="ir.ui.view">
+        <field name="name">adapters.kanban</field>
+        <field name="model">mobileshop.adapter</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="adapertype"/>
+                <field name="color"/>
+                <field name="price"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div name="tags">
+                                    <strong>
+                                        <span>Type: <field name="adapertype"/></span>
+                                    </strong>
+                                </div>
+                                <div name="tags">
+                                    <strong>
+                                        <span>Color: <field name="color"/></span>
+                                    </strong>
+                                </div>
+                                <div name="tags">
+                                    <ul>
+                                        <li>Price: <field name="price"/> Le</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Action for Adapters-->
+    <record id="action_products_adapters" model="ir.actions.act_window">
+        <field name="name">Adapters</field>
+        <field name="res_model">mobileshop.adapter</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Click to define a new adapter.
+              </p>
+            <p>
+                The Adapters form contains information to
+                simplify the adapter
+            </p>
+        </field>
+    </record>
+    <!--Menu for Adfapters -->
+    <menuitem id="menu_products_adapters" action="action_products_adapters"
+              parent="menu_products" sequence="2"/>
+
+
+    <!-- Form view for Headphone-->
+    <record id="view_headphone_form" model="ir.ui.view">
+        <field name="name">headphone.form</field>
+        <field name="model">mobileshop.headphone</field>
+        <field name="arch" type="xml">
+            <form string="Mobile Headphones">
+                <sheet>
+                    <group>
+                        <div>
+                            <field name="image" widget="image" class="oe_avatar"/>
+                        </div>
+                        <div>
+                            <h1><field name="name" placeholder="Enter Name"/></h1>
+                                <field name="company_id"/>
+                        </div>
+                        <br/>
+                    </group>
+                    <notebook>
+                        <page string="Headphone Propereties">
+                            <group>
+                                <field name="color"/>
+                                <field name="price"/>
+                                <field name="numberinstore"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view for Headphone-->
+    <record id="headphone_tree_view" model="ir.ui.view">
+        <field name="name">headphone.tree</field>
+        <field name="model">mobileshop.headphone</field>
+        <field name="arch" type="xml">
+            <tree string="menu items">
+                <field name="name"/>
+                <field name="color"/>
+                <field name="price"/>
+                <field name="numberinstore"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Kanban view for Headphone -->
+    <record id="headphone_kanban_view" model="ir.ui.view">
+        <field name="name">headphone.kanban</field>
+        <field name="model">mobileshop.headphone</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="color"/>
+                <field name="price"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div name="tags">
+                                    <strong>
+                                        <span>Color: <field name="color"/></span>
+                                    </strong>
+                                </div>
+                                <div name="tags">
+                                    <ul>
+                                        <li>Price: <field name="price"/> Le</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Action for Headphone-->
+    <record id="action_products_headphones" model="ir.actions.act_window">
+        <field name="name">HeadPhones</field>
+        <field name="res_model">mobileshop.headphone</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to define a new headphone.
+            </p><p>
+                The Adapters form contains information to
+                simplify the headphone
+        </p>
+        </field>
+    </record>
+    <!--Menu for Headphones -->
+     <menuitem id="menu_products_headphones" action="action_products_headphones"
+              parent="menu_products" sequence="3"/>
+
+
+    <!-- Form view for Usb , Covers, and others-->
+    <record id="view_usbcovers_form" model="ir.ui.view">
+        <field name="name">usbcovers.form</field>
+        <field name="model">mobileshop.usbcovers</field>
+        <field name="arch" type="xml">
+            <form string="Usb, Covers, Other Information">
+                <sheet>
+                    <group>
+                        <div>
+                            <field name="image" widget="image" class="oe_avatar"/>
+                        </div>
+                        <div>
+                            <h1><field name="name" placeholder="Enter Name"/></h1>
+                            <field name="responsible_id"/>
+                        </div>
+                        <br/>
+                    </group>
+                    <notebook>
+                        <page string="Usb and Covers Propereties">
+                            <group>
+                                <field name="usborcovertype" placeholder="Choose the type"/>
+                                <field name="color"/>
+                                <field name="price"/>
+                                <field name="numberinstore"/>
+                                <field name="productmobile_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- tree view for Usb , Covers, and others-->
+    <record id="usbcovers_tree_view" model="ir.ui.view">
+        <field name="name">usbcovers.tree</field>
+        <field name="model">mobileshop.usbcovers</field>
+        <field name="arch" type="xml">
+            <tree string="menu items">
+                <field name="name"/>
+                <field name="usborcovertype"/>
+                <field name="color"/>
+                <field name="price"/>
+                <field name="numberinstore"/>
+                <field name="productmobile_id"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Kanban view for Usb , Covers, and others -->
+    <record id="usbcovers_kanban_view" model="ir.ui.view">
+        <field name="name">usbcovers.kanban</field>
+        <field name="model">mobileshop.usbcovers</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="usborcovertype"/>
+                <field name="color"/>
+                <field name="price"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div name="tags">
+                                    <strong>
+                                        <span>Type: <field name="usborcovertype"/></span>
+                                    </strong>
+                                </div>
+                                <div name="tags">
+                                    <strong>
+                                        <span>Color: <field name="color"/></span>
+                                    </strong>
+                                </div>
+                                <div name="tags">
+                                    <ul>
+                                        <li>Price: <field name="price"/> Le</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+     </record>
+     <!-- Action for UsbCovers and other Products-->
+        <record id="action_products_usbcovers" model="ir.actions.act_window">
+            <field name="name">Usb, Covers, and Other Products </field>
+            <field name="res_model">mobileshop.usbcovers</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_filter_to_sell":1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Click to define a new Product.
+              </p><p>
+                The Product form contains information to simplify the sale
+                process
+              </p>
+            </field>
+        </record>
+    <!--Menu for UsbCovers -->
+    <menuitem id="menu_products_usbcovers" action="action_products_usbcovers"
+              parent="menu_products" sequence="4"/>
+
+    <!-- Form view for Screen -->
+    <record id="view_screen_form" model="ir.ui.view">
+        <field name="name">screen.form</field>
+        <field name="model">mobileshop.screen</field>
+        <field name="arch" type="xml">
+            <form string="Screen Information">
+                <sheet>
+                    <group>
+                        <div>
+                            <field name="image" widget="image" class="oe_avatar"/>
+                        </div>
+                        <div>
+                            <h1><field name="name" placeholder="Enter Name"/></h1>
+                            <field name="responsible_id"/>
+                        </div>
+                        <br/>
+                    </group>
+                        <notebook>
+                        <page string="Screen Propereties">
+                            <group>
+                                <field name="screentype" placeholder="Choose the type"/>
+                                <field name="price"/>
+                                <field name="numberinstore"/>
+                                <field name="mobile_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- tree view for Screen -->
+    <record id="screen_tree_view" model="ir.ui.view">
+        <field name="name">screen.tree</field>
+        <field name="model">mobileshop.screen</field>
+        <field name="arch" type="xml">
+            <tree string="menu items" editable="bottom">
+                <field name="name"/>
+                <field name="screentype"/>
+                <field name="price"/>
+                <field name="numberinstore"/>
+                <field name="mobile_id"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Kanban view for Screen -->
+    <record id="screen_kanban_view" model="ir.ui.view">
+        <field name="name">Screen.kanban</field>
+        <field name="model">mobileshop.screen</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="screentype"/>
+                <field name="price"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div name="tags">
+                                    <strong>
+                                        <span>Type: <field name="screentype"/></span>
+                                    </strong>
+                                </div>
+                                <div name="tags">
+                                    <ul>
+                                        <li>Price: <field name="price"/> Le</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Action for Screens-->
+    <record id="action_products_mobile_screens" model="ir.actions.act_window">
+        <field name="name">Screens</field>
+        <field name="res_model">mobileshop.screen</field>
+        <field name="view_mode">kanban,form,tree</field>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to define a new screen.
+            </p><p>
+            The screen saver form contains information to simplify the sale
+            process
+            </p>
+        </field>
+    </record>
+    <!--Menu for Screens -->
+    <menuitem id="menu_products_mobile_screens" action="action_products_mobile_screens"
+              parent="menu_products" sequence="5"/>
+
+
+    <!-- Form view for Company -->
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">company.form</field>
+        <field name="model">mobileshop.company</field>
+        <field name="arch" type="xml">
+            <form string="Screen Information">
+                <sheet>
+                    <group>
+                        <div>
+                            <field name="image" widget="image" class="oe_avatar"/>
+                        </div>
+                        <div>
+                            <h1><field name="name" placeholder="Enter Name"/></h1>
+                            <field name="companycountry"/>
+                            <field name="responsible_id"/>
+                        </div>
+                        <br/>
+                    </group>
+                    <notebook string="Company Mobiles">
+                        <page name="Mobiles" string="Mobiles">
+                            <field name="mobile_ids" widget="one2many_list">
+                                <tree string="Mobile">
+                                    <field name="company_id"/>
+                                    <field name="name"/>
+                                    <field name="screensize"/>
+                                    <field name="oper_system"/>
+                                    <field name="battery_size"/>
+                                    <field name="color"/>
+                                    <field name="price"/>
+                                    <field name="numberinstore"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="Adapters" string="Adapters">
+                            <field name="adapter_ids" widget="one2many_list">
+                                <tree string="Adapter">
+                                    <field name="company_id"/>
+                                    <field name="name"/>
+                                    <field name="adapertype"/>
+                                    <field name="color"/>
+                                    <field name="adapterspeed"/>
+                                    <field name="price"/>
+                                    <field name="numberinstore"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="HeadPhones" string="HeadPhones">
+                            <field name="headphone_ids" widget="one2many_list">
+                                <tree string="HeadPhones">
+                                    <field name="company_id"/>
+                                    <field name="name"/>
+                                    <field name="color"/>
+                                    <field name="price"/>
+                                    <field name="numberinstore"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- tree view for Company -->
+    <record id="company_tree_view" model="ir.ui.view">
+        <field name="name">company.tree</field>
+        <field name="model">mobileshop.company</field>
+        <field name="arch" type="xml">
+            <tree string="menu items">
+                <field name="name"/>
+                <field name="companycountry"/>
+                <field name="responsible_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Kanban view for Company -->
+    <record id="Company_kanban_view" model="ir.ui.view">
+        <field name="name">company.kanban</field>
+        <field name="model">mobileshop.company</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="companycountry"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div name="tags">
+                                    <strong>
+                                        <span>Company Countrty: <field name="companycountry"/></span>
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- Action for Company-->
+    <record id="action_products_company" model="ir.actions.act_window">
+        <field name="name">Mobile Companies</field>
+        <field name="res_model">mobileshop.company</field>
+        <field name="view_mode">kanban,form,tree</field>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Click to define a new Mobile Company.
+            </p>
+            <p>
+                The Mobile Company form contains information to
+                simplify the Company
+            </p>
+        </field>
+    </record>
+    <!--Menu for Companies -->
+    <menuitem id="menu_products_company" name="Mobile Companies" parent="menu_main"/>
+    <menuitem id="menu_products_mobile_company" action="action_products_company"
+              parent="menu_products_company" sequence="1"/>
+
+    <!-- Form view for Advantages -->
+    <record model="ir.ui.view" id="view_advantage_form">
+        <field name="name">advantage.form</field>
+        <field name="model">mobileshop.advantage</field>
+        <field name="arch" type="xml">
+            <form string="Mobiles Advantages">
+                <sheet>
+                    <group>
+                        <h1>
+                            <field name="name" placeholder="Enter Name"/>
+                        </h1>
+
+                        <br/>
+                        <div>
+                            <field name="responsible_id"/>
+                        </div>
+                    </group>
+                    <notebook>
+                        <page string="Mobiles">
+                            <group>
+                                <field name="mobiles_ids"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    --><!-- tree view for Advantages-->
+    <record id="advantage_tree_view" model="ir.ui.view">
+        <field name="name">advantage.tree</field>
+        <field name="model">mobileshop.advantage</field>
+        <field name="arch" type="xml">
+            <tree string="advantage tree">
+                <field name="name"/>
+                <field name="responsible_id"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Action for Advantages-->
+    <record id="action_products_advantages" model="ir.actions.act_window">
+        <field name="name">Advantages</field>
+        <field name="res_model">mobileshop.advantage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Click to define a new advantage.
+            </p>
+            <p>
+                The Advantages form contains information to
+                simplify the advantages
+            </p>
+        </field>
+    </record>
+    <!--Menu for Advantages -->
+    <menuitem id="menu_products_advantages" name="Mobiles advantages" parent="menu_main"/>
+    <menuitem id="menu_products_mobiles_advantages" action="action_products_advantages"
+              parent="menu_products_advantages" sequence="1"/>
+
+
+    <!-- Form view for Invoices -->
+    <record id="view_invoice_form" model="ir.ui.view">
+        <field name="name">invoice.form</field>
+        <field name="model">mobileshop.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Mobiles Advantages">
+                <sheet>
+                    <notebook>
+                        <page string="Invoice Propereties">
+                            <group colspan="4" col="4">
+                                <field name="name" placeholder="Enter Invoice Name"/>
+                                <field name="customername" placeholder="Enter Customer Name"/>
+                                <field name="customermobile" placeholder="Enter Customer Mobile"/>
+                                <field name="invoicedate"/>
+                            </group>
+                            <group>
+                                <div name="tags">
+                                    <separator string="Mobiles" colspan="2"/>
+                                    <field name="mobile_id"/>
+                                </div>
+                            </group>
+                            <group colspan="4" col="4">
+                                <field name="mobileprice"/>
+                                <field name="mobiletax"/>
+                                <field name="mobilequantity"/>
+                                <field name="mobiletotalprice"/>
+                            </group>
+                            <group>
+                                <div name="tags">
+                                    <separator string="Screens" colspan="2"/>
+                                    <field name="screen_id"/>
+                                </div>
+                            </group>
+                            <group colspan="4" col="4">
+                                <field name="screenprice"/>
+                                <field name="screenquantity"/>
+                                <field name="screentotalprice"/>
+                            </group>
+                            <group>
+                                <div name="tags">
+                                    <separator string="Adapters" colspan="2"/>
+                                    <field name="adapter_id"/>
+                                </div>
+                            </group>
+                            <group colspan="4" col="4">
+                                <field name="adapterprice"/>
+                                <field name="adapterquantity"/>
+                                <field name="adaptertotalprice"/>
+                            </group>
+                            <group>
+                                <div name="tags">
+                                    <separator string="Headphones and Other" colspan="2"/>
+                                    <field name="headphone_id"/>
+                                </div>
+                            </group>
+                            <group colspan="4" col="4">
+                                <field name="headphoneprice"/>
+                                <field name="headphonequantity"/>
+                                <field name="headphonetotalprice"/>
+                            </group>
+                            <group>
+                                <div name="tags">
+                                    <separator string="UsbCovers and Other" colspan="2"/>
+                                    <field name="usbcovers_id"/>
+                                </div>
+                            </group>
+                            <group colspan="4" col="4">
+                                <field name="usbcoversprice"/>
+                                <field name="usbcoversquantity"/>
+                                <field name="usbcoverstotalprice"/>
+                            </group>
+                            <div class="o_thread_date_separator">
+                                <span class="o_thread_date">
+
+                                </span>
+                            </div>
+                            <group>
+                                <div class="oe_subtotal_footer oe_right" cols="6">
+                                    <strong>Total Price: <field name="totalprice"/> Le</strong>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view for Invoices-->
+    <record model="ir.ui.view" id="invoice_tree_view">
+        <field name="name">invoice.tree</field>
+        <field name="model">mobileshop.invoice</field>
+        <field name="arch" type="xml">
+            <tree string="menu items">
+                <field name="name"/>
+                <field name="customername"/>
+                <field name="customermobile"/>
+                <field name="invoicedate"/>
+                <field name="totalprice"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Action for Invoicees-->
+    <record id="action_products_invoices" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">mobileshop.invoice</field>
+        <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Click to define a new invoice.
+            </p>
+            <p>
+                The invoice form contains information to
+                simplify the invoice
+            </p>
+        </field>
+    </record>
+    <!--Menu for Invoices -->
+    <menuitem id="menu_products_invoice" name="Mobile Saling Invoice" parent="menu_main"/>
+    <menuitem id="menu_products_mobile_invoice" action="action_products_invoices"
+              parent="menu_products_invoice" sequence="1"/>
+
+</odoo>

@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+mobile_user,mobile user,model_mobileshop_mobile,base.group_user,1,1,1,0
+advantage_user,advantage user,model_mobileshop_advantage,base.group_user,1,1,1,0
+screen_user,screen user,model_mobileshop_screen,base.group_user,1,1,1,0
+usbcovers_user,usbcovers user,model_mobileshop_usbcovers,base.group_user,1,1,1,0
+company_user,company user,model_mobileshop_company,base.group_user,1,1,1,0
+adapter_user,adapter user,model_mobileshop_adapter,base.group_user,1,1,1,0
+headphone_user,headphone user,model_mobileshop_headphone,base.group_user,1,1,1,0
+invoice_user,invoice user,model_mobileshop_invoice,base.group_user,1,0,1,0
+mobile_manager,mobile manager,model_mobileshop_mobile,group_manager,1,1,1,1
+advantage_manager,advantage manager,model_mobileshop_advantage,group_manager,1,1,1,1
+screen_manager,screen manager,model_mobileshop_screen,group_manager,1,1,1,1
+usbcovers_manager,usbcovers manager,model_mobileshop_usbcovers,group_manager,1,1,1,1
+company_manager,company manager,model_mobileshop_company,group_manager,1,1,1,1
+adapter_manager,adapter manager,model_mobileshop_adapter,group_manager,1,1,1,1
+headphone_manager,headphone manager,model_mobileshop_headphone,group_manager,1,1,1,1
+invoice_manager,invoice manager,model_mobileshop_invoice,group_manager,1,1,1,1
